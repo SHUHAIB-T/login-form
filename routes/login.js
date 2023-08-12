@@ -36,7 +36,7 @@ const users = [
     id: "user2",
     name: "Hisham",
     email: "hisham@gmail.com",
-    password: "12345",
+    password: "654321",
     profile: "https://media.licdn.com/dms/image/D5603AQF3TtGCvpJljA/profile-displayphoto-shrink_800_800/0/1674743064936?e=1697068800&v=beta&t=v_2_pL1Q9acd6snGOYHDnzrUL3qBmcWrGwWnl4pYOJ0",
     blogs:[
       {
@@ -83,8 +83,7 @@ router.get("/login", function (req, res) {
 router.post("/login", function (req, res) {
   let { Email, Password } = req.body;
   let user = users.find(
-    (x) => x.email === Email && users.find((x) => x.password === Password)
-  );
+    (x) => x.email === Email && x.password === Password );
   if (user) {
     req.session.user = {
       id: user.id,
