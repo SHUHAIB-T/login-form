@@ -1,7 +1,5 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const express = require("express");
+const path = require("path");
 const hbs = require("express-handlebars");
 const session = require("express-session");
 const nocache = require("nocache");
@@ -43,4 +41,4 @@ app.use(function (req, res, next) {
   res.send("error occured!!");
 });
 
-app.listen(3000, () => console.log("listening"));
+app.listen(3000, () => console.log("Server is running...."));
