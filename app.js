@@ -8,7 +8,7 @@ const loginRouter = require("./routes/login");
 
 // const hbs = require('hbs')
 const app = express();
-app.use(nocache());
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -20,25 +20,24 @@ app.engine(
     defaultLayout: "layout",
   })
 );
-
+app.use(nocache());
 app.use(
   session({
     secret: "session key",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 6000000 },
+    cookie: { maxAge: 6000000 }
   })
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  res.send("error occured!!");
+  res.status(404).render('error')
 });
 
 app.listen(3000, () => console.log("Server is running...."));
